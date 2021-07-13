@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Homepage(),
+    );
+  }
+}
+
+class Homepage extends StatefulWidget {
+  @override
+  _HomepageState createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  bool _value = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      backgroundColor: _value == false? Colors.amber : Colors.lightGreen,
+      body: Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(
+            _value == false ? "Unchacked" : "Checked",
+            style: TextStyle(color: Colors.deepOrange,fontSize: 50),
+          ),
+          Checkbox(
+              value: _value,
+              onChanged: (bool? value) {
+                setState(() {
+                  _value = value!;
+                });
+              }),
+
+          Switch(value: _value, onChanged: (bool value){
+            setState(() {
+              _value = value;
+            });
+          })
+        ]),
+      ),
+    );
+  }
+}
